@@ -1,6 +1,6 @@
 package aula2_ed_revisao;
 
-public class revisao {
+public class Revisao {
 
 	public static void main(String[] args) {
 		ex4();

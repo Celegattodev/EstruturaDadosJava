@@ -1,9 +1,13 @@
 package aula5_ed_arquivo;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
+import java.lang.*;
 
-public class Main {
+public class Arquivo {
 
     static FileReader fr;
     static BufferedReader br;
@@ -22,21 +26,88 @@ public class Main {
         //escrita();
         //formataDataSubstring();
         //formataDataSplit();
-        //UltimoNome();
+        //getSobrenome();
+        //ordenarNomes();
         //formulario();
         //ordenarNomes();
-        jogosBrasileirao();
+        //ordenarUsuarios();
+        //usuariosAcimaMedia();
+        partidasFut();
 
+        br.close();
+        bw.close();
+        fr.close();
+        fw.close();
     }
 
-    private static void jogosBrasileirao() {
-        //1São Paulo
-        //2Corinthians
-        //3Palmeiras
-        //4Santos
-        int[] pontos = {0, 1, 2, 3, 4};
+    private static void partidasFut() throws IOException {
+        int nTimes = Integer.parseInt(br.readLine());
+        String nomesTimes[] = new String [nTimes];
+        int pontosTimes[] = new int[nTimes];
 
+        //le times
+        for (int i = 0; i < nTimes; i++) {
+            nomesTimes[i] = br.readLine().substring(2);
+        }
 
+        //pontuação
+        int nPartidas = Integer.parseInt(br.readLine());
+        for (int i = 0; i < nPartidas; i++) {
+            String linha = br.readLine();
+            String valores[] = linha.split(" ");
+            int codTime1 = Integer.parseInt(valores[0]);
+            int codTime2 = Integer.parseInt(valores[1]);
+            int golTime1 = Integer.parseInt(valores[2]);
+            int golTime2 = Integer.parseInt(valores[3]);
+
+            if (golTime1 > golTime2){
+                pontosTimes[codTime1] +=3;
+            } else if (golTime1 < golTime2) {
+                pontosTimes[codTime2] +=3;
+            } else {
+                pontosTimes[codTime1]++;
+                pontosTimes[codTime2]++;
+            }
+        }
+        //verifica vencedor
+        int indMaiorPontos = 0;
+        int maiorPontos = 0;
+        for (int i = 0; i < nTimes; i++) {
+            if (pontosTimes[i] > maiorPontos){
+                indMaiorPontos = i;
+                maiorPontos = pontosTimes[i];
+            }
+        }
+        System.out.println("Campeão: "+nomesTimes[indMaiorPontos]+" - Pontuação: "+maiorPontos);
+    }
+
+    private static void usuariosAcimaMedia() throws IOException {
+        String linha = br.readLine();
+        while (linha != null){
+
+            String[] valores = linha.split(" ");
+            double nota = Double.parseDouble(valores[valores.length-1]);
+
+            if (nota >= 7) {
+                fw.write(linha + "\n");
+            }
+            linha = br.readLine();
+        }
+        bw.flush();
+    }
+
+    private static void ordenarUsuarios() throws IOException {
+        String linha = br.readLine();
+        ArrayList<String> nomes = new ArrayList<>();
+        while (linha != null){
+            nomes.add(linha);
+            linha= br.readLine();
+        }
+        Collections.sort(nomes);
+        for (String nome: nomes){
+            bw.write(nome +"\n");
+        }
+        bw.flush();
     }
 
     private static void ordenarNomes() {

@@ -1,6 +1,6 @@
 package aula2_ed_revisao;
  
-public class App_recursivo {
+public class AppRecursivo {
  
 	public static void main(String[] args) {
 		int produto;
@@ -22,13 +22,13 @@ public class App_recursivo {
 		}
 		return j + ex2(i -1, j);
 	}
-//	private static int ex3(int i) {
-////		Dado um n inteiro, retorne seu fatorial
-//		if (i == 2) {
-//			return i;
-//		}
-//		return i * ex2(i - 1);
-//	}
+	private static int ex3(int i) {
+//		Dado um n inteiro, retorne seu fatorial
+		if (i == 2) {
+			return i;
+		}
+		return i * ex2( i,i - 1);
+	}
 	private static int ex4(int i) {
 //		Fibonacci
 		if (i == 0 || i == 1) {
