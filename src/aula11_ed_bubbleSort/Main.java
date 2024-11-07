@@ -1,4 +1,4 @@
-package aula11_ed_sort;
+package aula11_ed_bubbleSort;
 
 public class Main {
     public static void main(String[] args) {
